@@ -1,0 +1,8 @@
+C:\Users\allan.ssilva4\source\repos\Biblioteca\Biblioteca\bin\Debug\Biblioteca.exe.config
+C:\Users\allan.ssilva4\source\repos\Biblioteca\Biblioteca\bin\Debug\Biblioteca.exe
+C:\Users\allan.ssilva4\source\repos\Biblioteca\Biblioteca\bin\Debug\Biblioteca.pdb
+C:\Users\allan.ssilva4\source\repos\Biblioteca\Biblioteca\obj\Debug\Biblioteca.csproj.AssemblyReference.cache
+C:\Users\allan.ssilva4\source\repos\Biblioteca\Biblioteca\obj\Debug\Biblioteca.csproj.SuggestedBindingRedirects.cache
+C:\Users\allan.ssilva4\source\repos\Biblioteca\Biblioteca\obj\Debug\Biblioteca.csproj.CoreCompileInputs.cache
+C:\Users\allan.ssilva4\source\repos\Biblioteca\Biblioteca\obj\Debug\Biblioteca.exe
+C:\Users\allan.ssilva4\source\repos\Biblioteca\Biblioteca\obj\Debug\Biblioteca.pdb
