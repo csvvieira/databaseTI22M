@@ -24,5 +24,10 @@ namespace Biblioteca
         {
             Console.WriteLine(categoria.Imprimir());
         }//fim do imprimir
+
+        public void Atualizar(string categoria)
+        {
+            this.categoria.ModificarDescricao = categoria;
+        }//fim do atualizar
     }//fim da classe
 }//fim do projeto

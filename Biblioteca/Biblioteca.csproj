@@ -45,6 +45,8 @@
   <ItemGroup>
     <Compile Include="Autor.cs" />
     <Compile Include="Categoria.cs" />
+    <Compile Include="ControlAutor.cs" />
+    <Compile Include="ControlCategoria.cs" />
     <Compile Include="ControlLivro.cs" />
     <Compile Include="ControlMenu.cs" />
     <Compile Include="Livro.cs" />

@@ -13,18 +13,45 @@ namespace Biblioteca
 
         public ControlLivro()
         {
-            livro = new Livro();//Conecta as classes
+            this.livro = new Livro();//Conecta as classes
         }//fim do construtor
 
         public ControlLivro(int codigo, long ISBN, string titulo, 
                             DateTime ano, string editora, int codigoCategoria)
         {
-            livro = new Livro(codigo, ISBN, titulo, ano, editora, codigoCategoria);
+            this.livro = new Livro(codigo, ISBN, titulo, ano, editora, codigoCategoria);
         }//fim do construtor
 
         public void Imprimir()
         {
-            Console.WriteLine(livro.Imprimir());
+            Console.WriteLine(this.livro.Imprimir());
+        }//fim do método
+
+        //Método Atualizar
+        public void Atualizar(int opcao, string dado)
+        {
+            switch (opcao)
+            {
+                case 1:
+                    this.livro.ModificarTitulo = dado;
+                    Console.WriteLine("Dado Atualizado com sucesso!");
+                    break;
+                case 2:
+                    this.livro.ModificarData = Convert.ToDateTime(dado);
+                    Console.WriteLine("Dado Atualizado com sucesso!");
+                    break;
+                case 3:
+                    this.livro.ModificarEditora = dado;
+                    Console.WriteLine("Dado Atualizado com sucesso!");
+                    break;
+                case 4:
+                    this.livro.ModificarCodigoCategoria = Convert.ToInt32(dado);
+                    Console.WriteLine("Dado Atualizado com sucesso!");
+                    break;
+                default:
+                    Console.WriteLine("Não é possível atualizar esse dado! Código Errado!");
+                    break;
+            }//fim do switch
         }//fim do método
     }//fim do classe
 }//fim do projeto Biblioteca

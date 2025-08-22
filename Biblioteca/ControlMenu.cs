@@ -10,12 +10,16 @@ namespace Biblioteca
     {
         //Declarar a Variável que representará as classes control
         private ControlLivro controleLivro;
+        private ControlAutor controleAutor;
+        private ControlCategoria controleCategoria;
         private int opcaoPrincipal;
         private int opcaoGeral;
 
         public ControlMenu()
         {
-            controleLivro = new ControlLivro();
+            controleLivro     = new ControlLivro();
+            controleAutor     = new ControlAutor();
+            controleCategoria = new ControlCategoria();
         }//fim do construtor
 
         //Métodos GETs e SETs
@@ -34,7 +38,8 @@ namespace Biblioteca
         //Mostrar Menu
         public void MostrarMenu()
         {
-            Console.WriteLine("\n\n Menu \n\n"                  + 
+            Console.Clear();//Limpar o console
+            Console.WriteLine("\n\n Menu Principal \n\n"        + 
                               "Escolha uma das opções abaixo: " +
                               "\n0. Sair"                       +
                               "\n1. Livro"                      +
@@ -56,12 +61,15 @@ namespace Biblioteca
                         break;//fim de cada caso
                     case 1:
                         Console.WriteLine("Livro");
+                        ExecutarLivro();
                         break;
                     case 2:
                         Console.WriteLine("Autor");
+                        ExecutarAutor();
                         break;
                     case 3:
                         Console.WriteLine("Categoria");
+                        ExecutarCategoria();
                         break;
                     default:
                         Console.WriteLine("Opção Inválida!");
@@ -72,8 +80,8 @@ namespace Biblioteca
 
         public void MenuGeral()
         {
-            Console.WriteLine("\n\n Escolha uma das ações do CRUD" +
-                             "\n0. Sair" +
+            Console.WriteLine("\n\nEscolha uma das ações do CRUD" +
+                             "\n0. Voltar ao menu anterior" +
                              "\n1. Cadastrar" +
                              "\n2. Consultar" +
                              "\n3. Atualizar" +
@@ -83,39 +91,167 @@ namespace Biblioteca
 
         public void ExecutarLivro()
         {
-            MenuGeral();//Escolher a opção correta
-            switch(ModificarOpcaoGeral)
+            do
             {
-                case 0:
-                    Console.WriteLine("Obrigado - Livro");
-                    break;
-                case 1:
-                    Console.WriteLine("\nCadastrar\n");
-                    //Pegar os dados do livro
-                    Console.WriteLine("\nInforme o código do livro: ");
-                    int codigo = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine("\n\nMENU LIVRO\n\n");
+                MenuGeral();//Escolher a opção correta
+                switch (ModificarOpcaoGeral)
+                {
+                    case 0:
+                        Console.WriteLine("Voltar ao menu anterior");
+                        break;
+                    case 1:
+                        Console.WriteLine("\nCadastrar\n");
+                        //Pegar os dados do livro
+                        Console.WriteLine("\nInforme o código do livro: ");
+                        int codigo = Convert.ToInt32(Console.ReadLine());
 
-                    Console.WriteLine("\nInforme o ISBN do livro: ");
-                    long ISBN = Convert.ToInt64(Console.ReadLine());
+                        Console.WriteLine("\nInforme o ISBN do livro: ");
+                        long ISBN = Convert.ToInt64(Console.ReadLine());
 
-                    Console.WriteLine("\nInforme o Título do livro: ");
-                    string titulo = Console.ReadLine();
+                        Console.WriteLine("\nInforme o Título do livro: ");
+                        string titulo = Console.ReadLine();
 
-                    Console.WriteLine("\nInforme o Ano de Lançamento do Livro: ");
-                    DateTime ano = Convert.ToDateTime(Console.ReadLine());
+                        Console.WriteLine("\nInforme o Ano de Lançamento do Livro: ");
+                        DateTime ano = Convert.ToDateTime(Console.ReadLine());
 
-                    Console.WriteLine("\nInforme a Editora do Livro: ");
-                    string editora = Console.ReadLine();
+                        Console.WriteLine("\nInforme a Editora do Livro: ");
+                        string editora = Console.ReadLine();
 
-                    Console.WriteLine("\nInforme a Categoria do Livro: ");
-                    int codigoCategoria = Convert.ToInt32(Console.ReadLine());
-                    //Chamar o livro
-                    ControlLivro livro = new ControlLivro(codigo, ISBN, titulo, ano, editora, codigoCategoria);
-                    //Finaliza
-                    break;
-                case 2:
-
-            }//fim do switch
+                        Console.WriteLine("\nInforme a Categoria do Livro: ");
+                        int codigoCategoria = Convert.ToInt32(Console.ReadLine());
+                        //Chamar o livro
+                        this.controleLivro = new ControlLivro(codigo, ISBN, titulo, ano, editora, codigoCategoria);
+                        //Finaliza
+                        Console.WriteLine("Cadastrado com sucesso!!!!!!!");
+                        break;
+                    case 2:
+                        Console.WriteLine("\nConsultar");
+                        //Chamar os dados do livro
+                        this.controleLivro.Imprimir();
+                        break;
+                    case 3:
+                        Console.WriteLine("\nAtualizar");
+                        Console.WriteLine("\nInforme qual dos campos abaixo você deseja atualizar: " +
+                                          "\n1. Título" +
+                                          "\n2. Ano" +
+                                          "\n3. Editora" +
+                                          "\n4. Categoria");
+                        int opcao = Convert.ToInt32(Console.ReadLine());
+                        //Coletando o dado para atualizar
+                        Console.WriteLine("Informe o novo dado: ");
+                        string dado = Console.ReadLine();
+                        //Atualizando...
+                        this.controleLivro.Atualizar(opcao, dado);
+                        break;
+                    case 4:
+                        Console.WriteLine("\nExcluir");
+                        this.controleLivro = new ControlLivro();//Zerando todos os dados - Exclui
+                        Console.WriteLine("Dado Excluido com Sucesso!!!");
+                        break;
+                    default:
+                        Console.WriteLine("Opção Escolhida não é válida! Tente Novamente!");
+                        break;
+                }//fim do switch
+            } while (ModificarOpcaoGeral != 0);//Fim da repetição
         }//fim do método ExecutarLivro
+
+        public void ExecutarAutor()
+        {
+            do
+            {
+                Console.WriteLine("\n\nMENU AUTOR\n\n");
+                MenuGeral();//Mostrar o menu
+                switch (ModificarOpcaoGeral)
+                {
+                    case 0:
+                        Console.WriteLine("Voltar ao menu anterior");
+                        break;
+                    case 1:
+                        Console.WriteLine("Cadastrar Autor");
+                        //Coletando os dados
+                        Console.WriteLine("Informe o código: ");
+                        int codigo = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Informe o nome do autor: ");
+                        string nome = Console.ReadLine();
+                        Console.WriteLine("Informe a sua nacionalidade: ");
+                        string nacionalidade = Console.ReadLine();
+                        //Criar o construtor
+                        this.controleAutor = new ControlAutor(codigo, nome, nacionalidade);
+                        Console.WriteLine("Cadastrado com sucesso!");
+                        break;
+                    case 2:
+                        Console.WriteLine("\nConsultar Autor");
+                        this.controleAutor.Imprimir();
+                        break;
+                    case 3:
+                        Console.WriteLine("\nAtualizar");
+                        Console.WriteLine("\nInforme o que deseja atualizar: " +
+                                          "\n1. Nome" +
+                                          "\n2. Nacionalidade");
+                        int opcao = Convert.ToInt32(Console.ReadLine());
+                        //Pegar o novo dado
+                        Console.WriteLine("Informe o novo dado: ");
+                        string dado = Console.ReadLine();
+                        //Executar a operação
+                        this.controleAutor.Atualizar(opcao, dado);
+                        break;
+                    case 4:
+                        Console.WriteLine("\nExcluir!");
+                        this.controleAutor = new ControlAutor();
+                        Console.WriteLine("\nExcluido!!!!!");
+                        break;
+                    default:
+                        Console.WriteLine("Opção escolhida não existe!");
+                        break;
+                }//fim do escolha
+            } while (ModificarOpcaoGeral != 0);//fim da repetição
+        }//fim do método
+
+        //Categoria
+        public void ExecutarCategoria()
+        {
+            do
+            {
+                Console.WriteLine("\n\nMenu Categoria");
+                MenuGeral();
+                switch (ModificarOpcaoGeral)
+                {
+                    case 0:
+                        Console.WriteLine("Voltar ao menu anterior");
+                        break;
+                    case 1:
+                        Console.WriteLine("Cadastrar Categoria");
+                        //Solicitar os dados
+                        Console.WriteLine("Informe o código: ");
+                        int codigo = Convert.ToInt32(Console.ReadLine());
+                        Console.WriteLine("Informe a descrição: ");
+                        string descricao = Console.ReadLine();
+                        //Criar a estrutura
+                        this.controleCategoria = new ControlCategoria(codigo, descricao);
+                        Console.WriteLine("Cadastrado com sucesso!");
+                        break;
+                    case 2:
+                        Console.WriteLine("Consultar Categoria");
+                        this.controleCategoria.Imprimir();
+                        break;
+                    case 3:
+                        Console.WriteLine("Atualizar Categoria");
+                        Console.WriteLine("Informe o novo título de categoria");
+                        string categoria = Console.ReadLine();
+                        //Executando o método
+                        this.controleCategoria.Atualizar(categoria);
+                        Console.WriteLine("Atualizado com sucesso!");
+                        break;
+                    case 4:
+                        this.controleCategoria = new ControlCategoria();
+                        Console.WriteLine("Excluído com sucesso!");
+                        break;
+                    default:
+                        Console.WriteLine("Código informado não é válido!");
+                        break;
+                }//fim do switch
+            } while (ModificarOpcaoGeral != 0);
+        }//fim do método
     }//fim da classe
 }//fim do Projeto
