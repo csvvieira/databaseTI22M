@@ -24,25 +24,68 @@ namespace Biblioteca
 
         public void Imprimir()
         {
-            Console.WriteLine(autor.Imprimir());
+            this.dao = new DAOAutor();
+            Console.WriteLine(this.dao.ConsultarTudoAutor());
         }//fim do imprimir
 
-        public void Atualizar(int opcao, string dado)
+        //Método para consulta por código
+        public void ConsultarPorCodigoAutor()
         {
-            switch (opcao)
+            this.dao = new DAOAutor();
+            //Pedindo para o usuário digitar
+            Console.WriteLine("Informe o código que deseja buscar: ");
+            int codigo = Convert.ToInt32(Console.ReadLine());
+            //Acionar o método ConsultarPorCodigo da DAO
+            Console.WriteLine(this.dao.ConsultarPorCodigoAutor(codigo));
+        }//Fim do método
+
+        public void AtualizarAutor()
+        {
+            //Criar a instância do banco de dados
+            this.dao = new DAOAutor();
+            Console.WriteLine("Escolha o que deseja atualizar: " +
+                              "\n1. Nome" +
+                              "\n2. Nacionalidade");
+            int escolha = Convert.ToInt32(Console.ReadLine());
+            //Pequeno escolha
+            switch (escolha)
             {
                 case 1:
-                    this.autor.ModificarNome = dado;
-                    Console.WriteLine("Nome atualizado com sucesso!");
+                    Console.WriteLine("\nAtualizar nome");
+                    Console.WriteLine("Informe o código de onde vai atualizar");
+                    int codigo = Convert.ToInt32(Console.ReadLine());
+                    //Nova descrição
+                    Console.WriteLine("Informe o novo nome: ");
+                    string nome = Console.ReadLine();
+                    //Atualizar
+                    Console.WriteLine(this.dao.AtualizarAutor(codigo, "nome", nome));
                     break;
                 case 2:
-                    this.autor.ModificarNacionalidade = dado;
-                    Console.WriteLine("Nacionalidade atualizada com sucesso!");
+                    Console.WriteLine("\nAtualizar nacionalidade");
+                    Console.WriteLine("Informe o código de onde vai atualizar");
+                    int codigo1 = Convert.ToInt32(Console.ReadLine());
+                    //Nova descrição
+                    Console.WriteLine("Informe a nova nacionalidade: ");
+                    string nacionalidade = Console.ReadLine();
+                    //Atualizar
+                    Console.WriteLine(this.dao.AtualizarAutor(codigo1, "nacionalidade", nacionalidade));
                     break;
                 default:
-                    Console.WriteLine("Opção não é válida!");
+                    Console.WriteLine("Impossível atualizar, algo deu errado!");
                     break;
-            }//fim do escolha
-        }//fim do método atualizar
+            }//Fim do switch
+        }//fim do atualizar
+
+        public void ExcluirAutor()
+        {
+            this.dao = new DAOAutor();
+
+            Console.WriteLine("Informe o código que deseja excluir: ");
+            int codigo = Convert.ToInt32(Console.ReadLine());
+
+            //Chama o método para excluir
+            Console.WriteLine(this.dao.DeletarAutor(codigo));
+        }//Fim do Excluir
+
     }//fim da classe
 }//fim do projeto

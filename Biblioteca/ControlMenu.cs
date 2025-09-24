@@ -84,8 +84,9 @@ namespace Biblioteca
                              "\n0. Voltar ao menu anterior" +
                              "\n1. Cadastrar" +
                              "\n2. Consultar" +
-                             "\n3. Atualizar" +
-                             "\n4. Excluir");
+                             "\n3. Consultar por Código" +
+                             "\n4. Atualizar" +
+                             "\n5. Excluir");
             ModificarOpcaoGeral = Convert.ToInt32(Console.ReadLine());//Coleto a opção do usuário
         }//fim do método
 
@@ -163,7 +164,7 @@ namespace Biblioteca
                         Console.WriteLine("Voltar ao menu anterior");
                         break;
                     case 1:
-                        Console.WriteLine("Cadastrar Autor");
+                        Console.WriteLine("\nCadastrar Autor");
                         //Coletando os dados
                         Console.WriteLine("Informe o nome do autor: ");
                         string nome = Console.ReadLine();
@@ -178,21 +179,18 @@ namespace Biblioteca
                         this.controleAutor.Imprimir();
                         break;
                     case 3:
-                        Console.WriteLine("\nAtualizar");
-                        Console.WriteLine("\nInforme o que deseja atualizar: " +
-                                          "\n1. Nome" +
-                                          "\n2. Nacionalidade");
-                        int opcao = Convert.ToInt32(Console.ReadLine());
-                        //Pegar o novo dado
-                        Console.WriteLine("Informe o novo dado: ");
-                        string dado = Console.ReadLine();
-                        //Executar a operação
-                        this.controleAutor.Atualizar(opcao, dado);
+                        Console.WriteLine("\nConsultar Autor por Código");
+                        this.controleAutor.ConsultarPorCodigoAutor();
                         break;
                     case 4:
-                        Console.WriteLine("\nExcluir!");
-                        this.controleAutor = new ControlAutor();
-                        Console.WriteLine("\nExcluido!!!!!");
+                        Console.WriteLine("\nAtualizar Autor");
+                        //Executando o método
+                        this.controleAutor.AtualizarAutor();
+                        break;
+                    case 5:
+                        Console.WriteLine("\nExcluir Autor");
+                        //Executando o método
+                        this.controleAutor.ExcluirAutor();
                         break;
                     default:
                         Console.WriteLine("Opção escolhida não existe!");
@@ -206,7 +204,7 @@ namespace Biblioteca
         {
             do
             {
-                Console.WriteLine("\n\nMenu Categoria");
+                Console.WriteLine("\n\nMENU CATEGORIA");
                 MenuGeral();
                 switch (ModificarOpcaoGeral)
                 {
@@ -222,20 +220,22 @@ namespace Biblioteca
                         this.controleCategoria = new ControlCategoria(descricao);
                         break;
                     case 2:
-                        Console.WriteLine("Consultar Categoria");
+                        Console.WriteLine("\nConsultar Categoria");
                         this.controleCategoria.Imprimir();
                         break;
                     case 3:
-                        Console.WriteLine("Atualizar Categoria");
-                        Console.WriteLine("Informe o novo título de categoria");
-                        string categoria = Console.ReadLine();
-                        //Executando o método
-                        this.controleCategoria.Atualizar(categoria);
-                        Console.WriteLine("Atualizado com sucesso!");
+                        Console.WriteLine("\nConsultar Categoria por Código");
+                        this.controleCategoria.ConsultarPorCodigo();
                         break;
                     case 4:
-                        this.controleCategoria = new ControlCategoria();
-                        Console.WriteLine("Excluído com sucesso!");
+                        Console.WriteLine("\nAtualizar Categoria");
+                        //Executando o método
+                        this.controleCategoria.Atualizar();
+                        break;
+                    case 5:
+                        Console.WriteLine("\nExcluir categoria");
+                        //Executando o método
+                        this.controleCategoria.Excluir();
                         break;
                     default:
                         Console.WriteLine("Código informado não é válido!");
