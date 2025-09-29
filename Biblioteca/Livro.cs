@@ -15,7 +15,7 @@ namespace Biblioteca
         private string titulo;
         private DateTime anoLancamento;
         private string editora;
-        private int codigoCategoria;
+        private int categoriaCodigo;
 
         //Primeiro Grande Método - Método Construtor
         //Instancia as variáveis na memória do equipamento
@@ -30,14 +30,14 @@ namespace Biblioteca
         }//Fim do construtor
 
         public Livro(int codigo, long ISBN, string titulo, 
-                     DateTime anoLancamento,string editora, int codigoCategoria)
+                     DateTime anoLancamento,string editora, int categoriaCodigo)
         {
             ModificarCodigo          = codigo;
             ModificarISBN            = ISBN;
             ModificarTitulo          = titulo;
             ModificarData            = anoLancamento;
             ModificarEditora         = editora;
-            ModificarCodigoCategoria = codigoCategoria;
+            ModificarCodigoCategoria = categoriaCodigo;
         }//Fim do construtor
 
         //Métodos GETs e SETs
@@ -80,8 +80,8 @@ namespace Biblioteca
 
         public int ModificarCodigoCategoria
         {
-            get { return this.codigoCategoria;}
-            set { this.codigoCategoria = value; }
+            get { return this.categoriaCodigo;}
+            set { this.categoriaCodigo = value; }
         }//fim do método
 
         public string Imprimir()

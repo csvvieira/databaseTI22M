@@ -102,7 +102,7 @@ namespace Biblioteca
                         Console.WriteLine("Voltar ao menu anterior");
                         break;
                     case 1:
-                        Console.WriteLine("\nCadastrar\n");
+                        Console.WriteLine("\nCadastrar Livro");
                         //Pegar os dados do livro
                         Console.WriteLine("\nInforme o ISBN do livro: ");
                         long ISBN = Convert.ToInt64(Console.ReadLine());
@@ -122,28 +122,22 @@ namespace Biblioteca
                         this.controleLivro = new ControlLivro(ISBN, titulo, ano, editora, codigoCategoria);
                         break;
                     case 2:
-                        Console.WriteLine("\nConsultar");
-                        //Chamar os dados do livro
+                        Console.WriteLine("\nConsultar Livro");
                         this.controleLivro.Imprimir();
                         break;
                     case 3:
-                        Console.WriteLine("\nAtualizar");
-                        Console.WriteLine("\nInforme qual dos campos abaixo você deseja atualizar: " +
-                                          "\n1. Título" +
-                                          "\n2. Ano" +
-                                          "\n3. Editora" +
-                                          "\n4. Categoria");
-                        int opcao = Convert.ToInt32(Console.ReadLine());
-                        //Coletando o dado para atualizar
-                        Console.WriteLine("Informe o novo dado: ");
-                        string dado = Console.ReadLine();
-                        //Atualizando...
-                        this.controleLivro.Atualizar(opcao, dado);
+                        Console.WriteLine("\nConsultar Livro por Código");
+                        this.controleLivro.ConsultarPorCodigoLivro();
                         break;
                     case 4:
-                        Console.WriteLine("\nExcluir");
-                        this.controleLivro = new ControlLivro();//Zerando todos os dados - Exclui
-                        Console.WriteLine("Dado Excluido com Sucesso!!!");
+                        Console.WriteLine("\nAtualizar Livro");
+                        //Executando o método
+                        this.controleLivro.AtualizarLivro();
+                        break;
+                    case 5:
+                        Console.WriteLine("\nExcluir Livro");
+                        //Executando o método
+                        this.controleLivro.ExcluirLivro();
                         break;
                     default:
                         Console.WriteLine("Opção Escolhida não é válida! Tente Novamente!");
@@ -172,7 +166,6 @@ namespace Biblioteca
                         string nacionalidade = Console.ReadLine();
                         //Criar o construtor
                         this.controleAutor = new ControlAutor(nome, nacionalidade);
-                        
                         break;
                     case 2:
                         Console.WriteLine("\nConsultar Autor");
@@ -212,7 +205,7 @@ namespace Biblioteca
                         Console.WriteLine("Voltar ao menu anterior");
                         break;
                     case 1:
-                        Console.WriteLine("Cadastrar Categoria");
+                        Console.WriteLine("\nCadastrar Categoria");
                         //Solicitar os dados
                         Console.WriteLine("Informe a descrição: ");
                         string descricao = Console.ReadLine();
